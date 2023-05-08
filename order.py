@@ -3,5 +3,10 @@ class Order:
         self.customer = customer
         self.items = items
         self.shippingAddress = customer.address
+        self.totalCost = 0
+    def total(self):
+        for item in self.items:
+            self.totalCost += item.price
+        return self.totalCost
 
-        
+
