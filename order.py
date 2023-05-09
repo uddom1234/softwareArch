@@ -9,4 +9,7 @@ class Order:
             self.totalCost += item.price
         return self.totalCost
 
+    def update_history(self):
+        # update order history...
+        pass
 
