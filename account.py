@@ -20,7 +20,20 @@ class Account:
         return self.customer.select_payment_method
 
     def updatePaymentStatus(self, status):
-        self.paymentStatus = status
+        if status == "paid":
+            # Update payment status to "paid"
+            self.paymentStatus = "paid"
+        elif status == "failed":
+            # Update payment status to "failed"
+            self.paymentStatus = "failed"
+            # Send payment failed message to the customer
+            self.sendPaymentFailedMessage()
+
+    def sendPaymentFailedMessage(self):
+        # Logic to send a payment failed message to the customer
+        message = "Payment failed!"
+        print("Sending payment failed message to:", self.customer.email)
+        print("Message:", message)
 
 
 
