@@ -19,13 +19,13 @@ class Account:
         # Return the selected payment method
         return self.customer.select_payment_method
 
-    def updatePaymentStatus(self, status):
-        if status == "paid":
-            # Update payment status to "paid"
-            self.paymentStatus = "paid"
-        elif status == "failed":
+    def updatePaymentStatus(self, pStatus):
+        if pStatus == "Success":
+            # Update payment status to "Success"
+            self.paymentStatus = "Success"
+        elif pStatus == "Failed":
             # Update payment status to "failed"
-            self.paymentStatus = "failed"
+            self.paymentStatus = "Failed"
             # Send payment failed message to the customer
             self.sendPaymentFailedMessage()
 

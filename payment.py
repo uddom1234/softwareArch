@@ -18,13 +18,23 @@ class Payment:
 
         if payment_successful:
             print("Payment successful")
+
             # Generate invoice
             invoice = Invoice(self.order)
             invoice.generateInvoice()
+
+            # Update order status in Order class
+            self.order.updateOrderStatus("Paid")
+
             # Update payment status in Account class
-            self.account.updatePaymentStatus("paid")
+            self.account.updatePaymentStatus("Success")
+
         else:
             print("Payment failed")
+
+            # Update order status in Order class
+            self.order.updateOrderStatus("Pending")
+
             # Update payment status in Account class
-            self.account.updatePaymentStatus("failed")
+            self.account.updatePaymentStatus("Failed")
 

@@ -22,5 +22,12 @@ class Order:
     def notify_customer(self):
         self.customer.notify_order_shipped()
 
+    def updateOrderStatus(self, oStatus):
+        if oStatus == "Paid":
+            # Update order status to "Paid"
+            self.orderStatus = "Paid"
+        elif oStatus == "Pending":
+            # Update order status to "Pending"
+            self.orderStatus = "Pending"
 
 
