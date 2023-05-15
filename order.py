@@ -22,7 +22,5 @@ class Order:
     def notify_customer(self):
         self.customer.notify_order_shipped()
 
-    def update_history(self):
-        # update order history...
-        pass
+
 

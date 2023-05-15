@@ -21,5 +21,10 @@ class Payment:
             # Generate invoice
             invoice = Invoice(self.order)
             invoice.generateInvoice()
+            # Update payment status in Account class
+            self.account.updatePaymentStatus("paid")
+        else:
+            print("Payment failed")
+            # Update payment status in Account class
+            self.account.updatePaymentStatus("failed")
 
-        return payment_successful

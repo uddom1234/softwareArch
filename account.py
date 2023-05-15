@@ -19,7 +19,8 @@ class Account:
         # Return the selected payment method
         return self.customer.select_payment_method
 
-
+    def updatePaymentStatus(self, status):
+        self.paymentStatus = status
 
 
 
