@@ -7,8 +7,6 @@ class ShoppingCart:
 
     def deleteItems(self, item):
         self.items.remove(item)
-
-
     def calculateTotalCost(self):
         totalCost = 0
         for item in self.items:

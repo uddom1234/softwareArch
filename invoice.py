@@ -9,3 +9,4 @@ class Invoice:
         for item in self.order.items:
             print(item.name + " $" + str(item.price))
         print("Total: $" + str(self.order.total()))
+        print("Payment Status: " + str(self.order.status))
