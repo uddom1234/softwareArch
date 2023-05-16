@@ -9,7 +9,7 @@ class Customer:
     def signUp(self, username, password):
         self.account = Account(self, username, password)
         with open('accounts.txt', 'a') as f:
-                    f.write(f"Name: {self.name}, Email: {self.email}, Username: {username}, Password: {password}\n, Address: {self.address}")
+                    f.write(f"Name: {self.name}, Email: {self.email}, Username: {username}, Password: {password}, Address: {self.address}\n")
 
 
 

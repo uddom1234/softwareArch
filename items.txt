@@ -1,0 +1,10 @@
+Name: Spinach, Price: 2.99
+Name: Kale, Price: 1.99
+Name: Broccoli, Price: 1.99
+Name: Quinoa, Price: 3.99
+Name: Avocado, Price: 4.99
+Name: Salmon, Price: 12.99
+Name: Almonds, Price: 4.99
+Name: Blueberries, Price: 1.99
+Name: Greek Yogurt, Price: 3.99
+Name: Chia Seeds, Price: 1.99

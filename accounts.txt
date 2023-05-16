@@ -1,1 +1,3 @@
 Name: Uddom Pang, Email: uddompang@gmail.com, Username: uddom1234, Password: jkiller8, Address: 5-17 Flemington Road
+Name: Panha Pang, Email: panha@gmail.com, Username: panha1234, Password: jkiller8, Address: 5-17 Flemignton Road
+Name: Peter, Email: peter@gmail.com, Username: peter123, Password: jkiller8, Address: 5-17 Flemington Road

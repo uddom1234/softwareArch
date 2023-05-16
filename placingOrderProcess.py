@@ -1,81 +1,84 @@
 import tkinter as tk
-from customer import Customer
 from shoppingCart import ShoppingCart
 from item import Item
 from order import Order
 from invoice import Invoice
-from account import Account
 
 def placingOrder(customer):
-    def add_item():
-        item_name = item_name_entry.get()
-        item_price = float(item_price_entry.get())
-        item = Item(item_name, item_price)
-        shoppingCart.addItems(item)
-        update_cart()
+    # Initialize shopping cart
+    shoppingCart = ShoppingCart()
+    #dictionary for storing old instances, because old instance != new instance even though name and stuff is the same
+    itemDic = {}
 
-    def remove_item():
-        item_index = int(item_index_entry.get())
-        shoppingCart.removeItems(item_index)
-        update_cart()
+    def addToCart(event):
+        if listOfItems.curselection():  # add this line
+            #dissect the item price and name from the list. then fetching the instance stored in the itemDic
+            selected_item = listOfItems.get(listOfItems.curselection())
+            itemName, itemPrice = selected_item.split(' - $')
+            item = itemDic[itemName]
+            
+            #using our shoppingCart class method addItems
+            shoppingCart.addItems(item)
+            refreshCart()
+
+    def removeItem():
+        if cart_contents.curselection():  # add this line
+            selected_item = cart_contents.get(cart_contents.curselection())
+            itemName, itemPrice = selected_item.split(' - $')
+            item = itemDic[itemName]
+            shoppingCart.deleteItems(item)
+            refreshCart()
+
+    def refreshCart():
+        cart_contents.delete(0, tk.END)
+        for item in shoppingCart.items:
+            cart_contents.insert(tk.END, f"{item.name} - ${item.price}")
 
     def place_order():
         order = Order(customer, shoppingCart.items)
         invoice = Invoice(order)
         invoiceDetails = invoice.generateInvoice()
         customer.account.addToOrderHistory(order)
-        result.set("Order placed and added to order history")
-        update_cart()
-
-    def update_cart():
-        cart_contents.delete(1.0, tk.END)
-        for item in shoppingCart.items:
-            cart_contents.insert(tk.END, f"{item.name} - ${item.price}\n")
-
-    # Initialize shopping cart
-    shoppingCart = ShoppingCart()
+        result.set(f"Order placed and added to order history. Total cost: ${shoppingCart.calculateTotalCost()}")
+        refreshCart()
 
     # Create the main window
     window = tk.Tk()
     window.title("Online Healthy Food Store")
 
-    # Create labels, entries, and buttons for adding items
-    item_name_label = tk.Label(window, text="Item Name:")
-    item_name_label.grid(row=11, column=0)
-    item_name_entry = tk.Entry(window)
-    item_name_entry.grid(row=11, column=1)
+    # Create a ListBox for item list
+    listOfItems = tk.Listbox(window)
+    listOfItems.grid(row=0, column=0)
+    listOfItems.bind('<<ListboxSelect>>', addToCart)
 
-    item_price_label = tk.Label(window, text="Item Price:")
-    item_price_label.grid(row=12, column=0)
-    item_price_entry = tk.Entry(window)
-    item_price_entry.grid(row=13, column=1)
 
-    add_item_button = tk.Button(window, text="Add Item", command=add_item)
-    add_item_button.grid(row=14, column=0)
+    #goes through the items.txt file and list all the items
+    with open('items.txt', 'r') as file:
+        for line in file:
+            itemInfo = line.strip().split(', ')
+            itemInfo = {info.split(': ')[0]: info.split(': ')[1] for info in itemInfo}
+            item = Item(itemInfo['Name'], itemInfo['Price'])
+            itemDic[item.name] = item
+            listOfItems.insert(tk.END, f"{item.name} - ${item.price}")
 
-    # Create labels, entries, and buttons for removing items
-    item_index_label = tk.Label(window, text="Item Index to Remove:")
-    item_index_label.grid(row=15, column=0)
-    item_index_entry = tk.Entry(window)
-    item_index_entry.grid(row=9, column=1)
+    # Create a ListBox for displaying the shopping cart contents
+    cart_label = tk.Label(window, text="Shopping Cart Contents:")
+    cart_label.grid(row=1, column=0)
+    cart_contents = tk.Listbox(window, width=30, height=10)
+    cart_contents.grid(row=2, column=0)
 
-    remove_item_button = tk.Button(window, text="Remove Item", command=remove_item)
-    remove_item_button.grid(row=10, column=0)
+    # Create button for deleting an item from the cart
+    delete_item_button = tk.Button(window, text="Delete Selected Item", command=removeItem)
+    delete_item_button.grid(row=3, column=0)
 
     # Create button for placing an order
     place_order_button = tk.Button(window, text="Place Order", command=place_order)
-    place_order_button.grid(row=11, column=0)
+    place_order_button.grid(row=4, column=0)
 
     # Create a label for displaying the result
     result = tk.StringVar()
     result_label = tk.Label(window, textvariable=result)
-    result_label.grid(row=11, column=1)
-
-    # Create a text widget for displaying the shopping cart contents
-    cart_label = tk.Label(window, text="Shopping Cart Contents:")
-    cart_label.grid(row=12, column=0)
-    cart_contents = tk.Text(window, width=30, height=10)
-    cart_contents.grid(row=13, column=0)
+    result_label.grid(row=5, column=0)
 
     # Run the application
     window.mainloop()
