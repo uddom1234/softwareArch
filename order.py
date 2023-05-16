@@ -1,3 +1,5 @@
+from shipmentProvider import ShipmentProvider
+from shipment import Shipment
 class Order:
     def __init__(self, customer, items):
         self.customer = customer
@@ -5,15 +7,15 @@ class Order:
         self.shippingAddress = customer.address
         self.totalCost = 0
         self.status = 'Pending Payment'
+
     def total(self):
         for item in self.items:
             self.totalCost += item.price
-
         return self.totalCost
-    
-     def confirm_order(self):
-        self.shipment_provider = ShipmentProvider()
-        self.shipment_provider.confirm_order(self)
+
+     # def confirm_order(self):
+     #    self.shipment_provider = ShipmentProvider()
+     #    self.shipment_provider.confirm_order(self)
 
     def create_shipment(self):
         self.shipment = Shipment()
