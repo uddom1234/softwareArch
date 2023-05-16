@@ -1,6 +1,4 @@
 class Payment:
-    def __init__(self, order):
-        self.order = order
 
     def processPayment(self, paymentMethod):
         if paymentMethod == "credit":
