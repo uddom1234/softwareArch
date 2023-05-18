@@ -8,20 +8,14 @@ class Payment:
         paymentMethods = ["Credit Card", "PayPal"]
         paymentSuccessful = paymentMethod in paymentMethods
 
+
         if paymentSuccessful:
             print(f"Processing {paymentMethod} payment...")
             print("Payment successful !")
-
             invoice = Invoice(self.order)
-            invoice.generateInvoice()
+            self.order.updateOrderStatus("Paid")
+            return invoice.generateInvoice()
 
         else:
-            print("Payment failed !")
-
-        self.updateOrderStatus(paymentSuccessful)
-
-    def updateOrderStatus(self, success):
-        orderStatus = "Paid" if success else "Pending"
-
-        # Update order status in Order class
-        self.order.updateOrderStatus(orderStatus)
+            self.order.updateOrderStatus("Pending")
+            return "Payment failed !"

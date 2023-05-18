@@ -1,0 +1,7 @@
+Invoice for: Uddom Pang
+Shipping to: 5-17 Flemington Road
+Items:
+Chia Seeds $1.99
+Almonds $4.99
+Total: $13.96
+Payment Status: Paid

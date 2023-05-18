@@ -1,9 +1,10 @@
 import tkinter as tk
 
-def paymentProcess(customer):
+def paymentProcess(customer, order):
     def selectMethod(method):
-        valid = customer.account.requestPaymentMethod(method)
-        result.set(customer.account.updatePaymentStatus(valid))
+        res = customer.account.requestPaymentMethod(method, order)
+        result.set(res)
+
 
     window = tk.Tk()
     window.title("Online Healthy Food Store")

@@ -44,7 +44,7 @@ def placingOrder(customer):
         customer.account.addToOrderHistory(order)
         result.set(f"Order placed and added to order history. Total cost: ${shoppingCart.calculateTotalCost()}")
         window.destroy()
-        paymentProcess(customer)
+        paymentProcess(customer, order)
         refreshCart()
 
     window = tk.Tk()

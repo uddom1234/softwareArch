@@ -11,4 +11,4 @@ class Account:
             f.write(f"Order: {order.orderID}, Total: {order.total()}, Status: {order.status}, Customer: {self.username}\n")
 
     def requestPaymentMethod(self, method, order):
-        self.customer.selectPaymentMethod(method, order)
+        return self.customer.selectPaymentMethod(method, order)

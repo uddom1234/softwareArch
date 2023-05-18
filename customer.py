@@ -13,9 +13,9 @@ class Customer:
             # Creating a new instance of Payment class
             # Passing the order and account to the Payment object
             payment = Payment(order, self.account)
-            payment.processPayment(method)
+            return payment.processPayment(method)
         else:
-            print("Invalid payment method.")
+            return "Invalid payment method."
 
     def signUp(self, username, password):
         self.account = Account(self, username, password)

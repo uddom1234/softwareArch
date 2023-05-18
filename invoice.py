@@ -3,10 +3,16 @@ class Invoice:
         self.order = order
 
     def generateInvoice(self):
-        print("Invoice for: " + self.order.customer.name)
-        print("Shipping to: " + self.order.shippingAddress)
-        print("Items:")
+        response = ''
+        response += "Invoice for: " + self.order.customer.name + "\n"
+        response += "Shipping to: " + self.order.shippingAddress + "\n"
+        response += "Items:"+ "\n"
         for item in self.order.items:
-            print(item.name + " $" + str(item.price))
-        print("Total: $" + str(self.order.total()))
-        print("Payment Status: " + str(self.order.status))
+            response += item.name + " $" + str(item.price)+ "\n"
+        response += "Total: $" + str(self.order.total())+ "\n"
+        response += "Payment Status: " + str(self.order.status)+ "\n"
+        with open(f'orders/order_{self.order.orderID}.txt', 'a') as f:
+            f.write(response)
+
+        return response
+

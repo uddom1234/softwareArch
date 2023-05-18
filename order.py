@@ -32,5 +32,5 @@ class Order:
         self.customer.notify_order_shipped()
 
     def updateOrderStatus(self, oStatus):
-        self.orderStatus = oStatus
+        self.status = oStatus
 
