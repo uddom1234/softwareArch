@@ -1,5 +1,11 @@
+from shipment import Shipment
+from shipmentProvider import ShipmentProvider
+
+
 class Order:
     def __init__(self, customer, items):
+        self.shipment_provider = None
+        self.orderStatus = "Pending"
         self.customer = customer
         self.items = items
         self.shippingAddress = customer.address
@@ -10,8 +16,8 @@ class Order:
             self.totalCost += item.price
 
         return self.totalCost
-    
-     def confirm_order(self):
+
+    def confirm_order(self):
         self.shipment_provider = ShipmentProvider()
         self.shipment_provider.confirm_order(self)
 
@@ -28,9 +34,7 @@ class Order:
         if oStatus == "Paid":
             # Update order status to "Paid"
             self.orderStatus = "Paid"
-        elif oStatus == "Pending":
-            # Update order status to "Pending"
-            self.orderStatus = "Pending"
+
 
         return self.totalCost
 
