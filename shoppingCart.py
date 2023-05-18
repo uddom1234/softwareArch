@@ -10,7 +10,7 @@ class ShoppingCart:
     def calculateTotalCost(self):
         totalCost = 0
         for item in self.items:
-            totalCost += item.price
+            totalCost += float(item.price)
         return totalCost
 
 

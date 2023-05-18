@@ -1,6 +1,6 @@
-from shipment import Shipment
 from shipmentProvider import ShipmentProvider
-
+from shipment import Shipment
+import random
 
 class Order:
     def __init__(self, customer, items):
@@ -11,10 +11,11 @@ class Order:
         self.shippingAddress = customer.address
         self.totalCost = 0
         self.status = 'Pending Payment'
+        self.orderID = random.randint(1, 1000)
+
     def total(self):
         for item in self.items:
-            self.totalCost += item.price
-
+            self.totalCost += float(item.price)
         return self.totalCost
 
     def confirm_order(self):
@@ -31,10 +32,5 @@ class Order:
         self.customer.notify_order_shipped()
 
     def updateOrderStatus(self, oStatus):
-        if oStatus == "Paid":
-            # Update order status to "Paid"
-            self.orderStatus = "Paid"
-
-
-        return self.totalCost
+        self.orderStatus = oStatus
 

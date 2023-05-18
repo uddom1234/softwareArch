@@ -12,14 +12,21 @@ def sessionAccount():
 
     try:
         with open(f'accounts.txt', 'r') as file:
+            #loops through each line of file
             lines = file.readlines()
+            #read the line and if it exists, then it executes
             if lines:
                 for line in lines:
-                    account_info = line.strip().split(', ')
-                    account_dict = {info.split(': ')[0]: info.split(': ')[1] for info in account_info}
-                    userName = account_dict['Username']
-                    userEmail = account_dict['Email']
-                    userPassword = account_dict['Password']
+                    # the text file is structured like a dict: Name: {name}, Email: {email}
+                    # it is seperated with a space and comma
+                    # this will remove any empty space infront or behind each row then split each items by ', '
+                    accountInfo = line.strip().split(', ')
+                    accountDict = {info.split(': ')[0]: info.split(': ')[1] for info in accountInfo}
+                    # individual items are split again and put into dictionary for each items: Email, then goes to Username
+                    
+                    #then we take the dictionary value with the key and assign it to a variable
+                    userName = accountDict['Username']
+                    userEmail = accountDict['Email']
 
                     if userName == username or userEmail == email:
                         result.set("Account already created. ")
@@ -32,6 +39,7 @@ def sessionAccount():
                         break
 
             else:
+                #but if there isn't no line, it just creates the account
                 customer = Customer(name, email, address)
                 customer.signUp(username, password)
                 currentAccount = customer.account
@@ -54,14 +62,15 @@ def login():
     password = loginPasswordInput.get()
     try:
         with open(f'accounts.txt', 'r') as file:
+            #loops through each line
             for line in file:
-                account_info = line.strip().split(', ')
-                account_dict = {info.split(': ')[0]: info.split(': ')[1] for info in account_info}
-                userName = account_dict['Username']
-                userPassword = account_dict['Password']
+                accountInfo = line.strip().split(', ')
+                accountDict = {info.split(': ')[0]: info.split(': ')[1] for info in accountInfo}
+                userName = accountDict['Username']
+                userPassword = accountDict['Password']
 
                 if userName == username and userPassword == password:
-                    customer = Customer(account_dict['Name'], account_dict['Email'], account_dict['Address'])
+                    customer = Customer(accountDict['Name'], accountDict['Email'], accountDict['Address'])
                     customer.account = Account(customer, username, password)
                     result.set(f"Signed in, Welcome {customer.name}!")
                     currentAccount = customer.account
@@ -84,7 +93,7 @@ def login():
 window = tk.Tk()
 window.title("Online Healthy Food Store")
 
-# Create labels, entries, and buttons for creating an account
+# creating an account section
 nameHeader = tk.Label(window, text="Name:")
 nameHeader.grid(row=0, column=0)
 nameInput = tk.Entry(window)
@@ -113,6 +122,7 @@ passwordInput.grid(row=3, column=1)
 createButton = tk.Button(window, text="Create Account", command=sessionAccount)
 createButton.grid(row=3, column=2)
 
+# login to existing account section
 breakHeader = tk.Label(window, text='---Login if you have an account---')
 breakHeader.grid(row=4, column=1)
 

@@ -1,4 +1,5 @@
 from account import Account
+from payment import Payment
 class Customer:
     def __init__(self, name, email, address):
         self.name = name
@@ -7,14 +8,14 @@ class Customer:
         self.payment_methods = ["Credit Card", "PayPal"]
         self.selected_payment_method = None
 
-    def select_payment_method(self, method):
+    def selectPaymentMethod(self, method, order):
         if method in self.payment_methods:
-            self.selected_payment_method = method
-            print("Selected payment method:", method)
+            # Creating a new instance of Payment class
+            # Passing the order and account to the Payment object
+            payment = Payment(order, self.account)
+            payment.processPayment(method)
         else:
-            print("Invalid payment method")
-
-        self.account = None
+            print("Invalid payment method.")
 
     def signUp(self, username, password):
         self.account = Account(self, username, password)
