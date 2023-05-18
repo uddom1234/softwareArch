@@ -1,4 +1,5 @@
 from account import Account
+from payment import Payment
 class Customer:
     def __init__(self, name, email, address):
         self.name = name
@@ -9,12 +10,9 @@ class Customer:
 
     def select_payment_method(self, method):
         if method in self.payment_methods:
-            self.selected_payment_method = method
-            print("Selected payment method:", method)
+            Payment.processPayment(method)
         else:
-            print("Invalid payment method")
-
-        self.account = None
+            self.account.updatePaymentStatus(False)
 
     def signUp(self, username, password):
         self.account = Account(self, username, password)

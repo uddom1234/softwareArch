@@ -3,7 +3,7 @@ from shoppingCart import ShoppingCart
 from item import Item
 from order import Order
 from invoice import Invoice
-
+from paymentProcess import paymentProcess
 def placingOrder(customer):
     # initiate the instance of shopping cart
     shoppingCart = ShoppingCart()
@@ -41,10 +41,10 @@ def placingOrder(customer):
 
     def placeOrder():
         order = Order(customer, shoppingCart.items)
-        invoice = Invoice(order)
-        invoiceDetails = invoice.generateInvoice()
         customer.account.addToOrderHistory(order)
         result.set(f"Order placed and added to order history. Total cost: ${shoppingCart.calculateTotalCost()}")
+        window.destroy()
+        paymentProcess(customer)
         refreshCart()
 
     window = tk.Tk()

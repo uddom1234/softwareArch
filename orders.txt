@@ -1,0 +1,11 @@
+Order: 953, Total: 40.910000000000004, Status: Pending Payment Customer: uddom1234
+Order: 978, Total: 25.96, Status: Pending Payment, Customer: uddom1234
+Order: 203, Total: 8.98, Status: Pending Payment, Customer: uddom1234
+Order: 844, Total: 4.99, Status: Pending Payment, Customer: uddom1234
+Order: 281, Total: 8.98, Status: Pending Payment, Customer: uddom1234
+Order: 108, Total: 9.98, Status: Pending Payment, Customer: uddom1234
+Order: 850, Total: 3.98, Status: Pending Payment, Customer: uddom1234
+Order: 487, Total: 8.98, Status: Pending Payment, Customer: uddom1234
+Order: 502, Total: 5.98, Status: Pending Payment, Customer: uddom1234
+Order: 326, Total: 8.98, Status: Pending Payment, Customer: uddom1234
+Order: 34, Total: 21.96, Status: Pending Payment, Customer: uddom1234

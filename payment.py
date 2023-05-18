@@ -1,20 +1,20 @@
+from invoice import Invoice
 class Payment:
-
     def processPayment(self, paymentMethod):
-        if paymentMethod == "credit":
+        if paymentMethod == "Credit Card":
             # Process credit card payment
             print("Processing credit card payment...")
-            payment_successful = True
-        elif paymentMethod == "paypal":
+            paymentSuccessful = True
+        elif paymentMethod == "PayPal":
             # Process PayPal payment
             print("Processing PayPal payment...")
-            payment_successful = True
+            paymentSuccessful = True
         else:
             # Invalid payment method
             print("Invalid payment method")
-            payment_successful = False
+            paymentSuccessful = False
 
-        if payment_successful:
+        if paymentSuccessful:
             print("Payment successful")
 
             # Generate invoice
