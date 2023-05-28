@@ -22,7 +22,7 @@ class Customer:
         with open('accounts.txt', 'a') as f:
                     f.write(f"Name: {self.name}, Email: {self.email}, Username: {username}, Password: {password}, Address: {self.address}\n")
     
-    def notify_order_shipped(self):
+    def nofityOrderShipped(self):
         return "Order has been shipped!"
 
 

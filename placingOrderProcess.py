@@ -13,8 +13,8 @@ def placingOrder(customer):
     def addToCart(event):
         if listOfItems.curselection():
             #dissect the item price and name from the list. then fetching the instance stored in the itemDic
-            selected_item = listOfItems.get(listOfItems.curselection())
-            itemName, itemPrice = selected_item.split(' - $')
+            selectedItem = listOfItems.get(listOfItems.curselection())
+            itemName, itemPrice = selectedItem.split(' - $')
             item = itemDic[itemName]
             
             #using our shoppingCart class method addItems
@@ -24,8 +24,8 @@ def placingOrder(customer):
     def removeItem():
         if cartItems.curselection():
             #dissect the item price and name from the list. then fetching the instance stored in the itemDic
-            selected_item = cartItems.get(cartItems.curselection())
-            itemName, itemPrice = selected_item.split(' - $')
+            selectedItem = cartItems.get(cartItems.curselection())
+            itemName, itemPrice = selectedItem.split(' - $')
             item = itemDic[itemName]
 
             #using our shoppingCart class method removeItem to remove the item from the list
@@ -45,7 +45,6 @@ def placingOrder(customer):
         result.set(f"Order placed and added to order history. Total cost: ${shoppingCart.calculateTotalCost()}")
         window.destroy()
         paymentProcess(customer, order)
-        refreshCart()
 
     window = tk.Tk()
     window.title("Online Healthy Food Store")

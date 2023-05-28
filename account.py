@@ -1,4 +1,4 @@
-from order_manager import OrderManager
+from orderManager import OrderManager
 
 class Account:
     def __init__(self, customer, password, username):
@@ -6,24 +6,21 @@ class Account:
         self.password = password
         self.username = username
         self.orderHistory = []
-        self.order_manager = OrderManager()
+        self.orderManager = OrderManager()
 
     def addToOrderHistory(self, order):
         self.orderHistory.append(order)
         with open(f'./orders/{self.username}_orders.txt', 'a') as f:
             f.write(f"Order: {order}\n")
 
-    def requestPaymentMethod(self):
-        print("Available payment methods:", self.customer.payment_methods)
-        method = input("Please select a payment method: ")
-        self.customer.select_payment_method(method)
-        return self.customer.select_payment_method
+    def requestPaymentMethod(self, method, order):
+        return self.customer.selectPaymentMethod(method, order)
 
     def updatePaymentStatus(self, pStatus, order):
         if pStatus == "Success":
             self.paymentStatus = "Success"
             order.update_order_status("Paid")
-            self.order_manager.confirm_order(order)
+            self.orderManager.confirmOrder(order)
         elif pStatus == "Failed":
             self.paymentStatus = "Failed"
             self.sendPaymentFailedMessage()

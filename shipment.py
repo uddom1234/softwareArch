@@ -3,8 +3,8 @@ class Shipment:
         self.order = order
         self.status = 'New'
 
-    def update_status(self, status):
-        valid_statuses = ['New', 'Preparing', 'Shipped', 'Delivered']
-        if status not in valid_statuses:
+    def updateStatus(self, status):
+        validStatuses = ['New', 'Preparing', 'Shipped', 'Delivered']
+        if status not in validStatuses:
             raise Exception("Invalid shipment status.")
         self.status = status

@@ -3,9 +3,10 @@ from shipmentProvider import ShipmentProvider
 
 class OrderManager:
     def __init__(self):
-        self.shipment_provider = ShipmentProvider()
+        self.shipmentProvider = ShipmentProvider()
 
-    def confirm_order(self, order):
+    def confirmOrder(self, order):
         if order.status != 'Paid':
             raise Exception("Order must be paid before it can be confirmed.")
         shipment = Shipment(order)
+        return shipment

@@ -1,9 +1,15 @@
 import tkinter as tk
+import time
+from shipmentPopup import shipmentPopup
 
 def paymentProcess(customer, order):
     def selectMethod(method):
         res = customer.account.requestPaymentMethod(method, order)
         result.set(res)
+        time.sleep(2)
+        shipmentPopup(order)
+    def close():
+        window.destroy()
 
 
     window = tk.Tk()
@@ -23,5 +29,7 @@ def paymentProcess(customer, order):
     resultHeader = tk.Label(window, textvariable=result)
     resultHeader.grid(row=3, column=1)
 
+    closeBtn = tk.Button(window, text=f'Close', command=close)
+    closeBtn.grid(row=4, column= 1)
 
     window.mainloop()
