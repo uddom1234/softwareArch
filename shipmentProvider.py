@@ -1,8 +1,13 @@
 class ShipmentProvider:
-    def confirm_order(self, order):
-        order.create_shipment()
-        order.update_shipment_status("Assigned")
-        self.deliver_shipment(order)
+    def __init__(self):
+        self.shipments = []
 
-    def deliver_shipment(self, order):
-        order.update_shipment_status("Delivered")
+    def add_shipment(self, shipment):
+        self.shipments.append(shipment)
+        shipment.update_status('Preparing')
+
+    def update_shipment_status(self, shipment, status):
+        shipment.update_status(status)
+        if status == 'Shipped':
+            shipment.order.customer.notify_order_shipped()
+
