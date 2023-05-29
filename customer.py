@@ -7,7 +7,8 @@ class Customer:
         self.address = address
         self.payment_methods = ["Credit Card", "PayPal"]
         self.selected_payment_method = None
-
+    
+    # Allows the selection of a payment method for a customer's order
     def selectPaymentMethod(self, method, order):
         if method in self.payment_methods:
             # Creating a new instance of Payment class
